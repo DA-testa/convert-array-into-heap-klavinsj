@@ -11,7 +11,7 @@ def build_heap(data):
         while i > 0 and data[parent] > data[i]:
             data[parent], data[i] = data[i], data[parent]
             swaps.append((parent,i))
-            parent = i
+            i = parent 
             parent = (i-1)//2
     return swaps
 
