@@ -5,8 +5,14 @@ def build_heap(data):
     swaps = []
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
+    for i in range(len(data)-1,0,-1): 
+        parent = (i-1)//2   
 
-
+        while i > 0 and data[parent] > data[i]:
+            data[parent], data[i] = data[i], data[parent]
+            swaps.append((parent,i))
+            i = parent 
+            parent = (i-1)//2
     return swaps
 
 
@@ -15,11 +21,16 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-
-
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+    text = input()
+    if "I" in text:
+        # input from keyboard
+        n = int(input())
+        data = list(map(int, input().split()))
+    if "F" in text:
+        nosaukums = str(input())
+        with open("./tests/" + nosaukums, 'r') as dati:
+            n = int(dati.readline())
+            data = list(map(int, dati.readline().split()))
 
     # checks if lenght of data is the same as the said lenght
     assert len(data) == n
